@@ -1990,7 +1990,7 @@ Game.Launch=function()
 			}
 		};
 		
-		new Game.Object('Farm','farm|farms|harvested','Grows cookie plants from cookie seeds.','farm','farmIcon','farmBackground',500,function(){
+		new Game.Object('Student','student|students|taked','Takes integrals faster than schoolboys.','farm','farmIcon','farmBackground',500,function(){
 			return Game.ComputeCps(2,Game.Has('Cheap hoes')*0.5,Game.Has('Fertilizer')+Game.Has('Cookie trees')+Game.Has('Genetically-modified cookies'));
 		},Game.NewDrawFunction(0,16,16,64,2,32),function(){
 			if (this.amount>=1) Game.Unlock(['Cheap hoes','Fertilizer']);if (this.amount>=10) Game.Unlock('Cookie trees');if (this.amount>=50) Game.Unlock('Genetically-modified cookies');
@@ -2231,9 +2231,9 @@ Game.Launch=function()
 		new Game.Upgrade('Lubricated dentures','Grandmas are <b>twice</b> as efficient.<q>Squish</q>',Game.Objects['Schoolboy'].basePrice*tier3,[1,1]);
 		
 		order=300;
-		new Game.Upgrade('Cheap hoes','Farms gain <b>+0.5</b> base CpS.',Game.Objects['Farm'].basePrice*tier1,[2,0]);
-		new Game.Upgrade('Fertilizer','Farms are <b>twice</b> as efficient.<q>It\'s chocolate, I swear.</q>',Game.Objects['Farm'].basePrice*tier2,[2,0]);
-		new Game.Upgrade('Cookie trees','Farms are <b>twice</b> as efficient.<q>A relative of the breadfruit.</q>',Game.Objects['Farm'].basePrice*tier3,[2,1]);
+		new Game.Upgrade('Cheap hoes','Farms gain <b>+0.5</b> base CpS.',Game.Objects['Student'].basePrice*tier1,[2,0]);
+		new Game.Upgrade('Fertilizer','Farms are <b>twice</b> as efficient.<q>It\'s chocolate, I swear.</q>',Game.Objects['Student'].basePrice*tier2,[2,0]);
+		new Game.Upgrade('Cookie trees','Farms are <b>twice</b> as efficient.<q>A relative of the breadfruit.</q>',Game.Objects['Student'].basePrice*tier3,[2,1]);
 		
 		order=400;
 		new Game.Upgrade('Sturdier conveyor belts','Factories gain <b>+4</b> base CpS.',Game.Objects['Factory'].basePrice*tier1,[4,0]);
@@ -2287,7 +2287,7 @@ Game.Launch=function()
 		new Game.Upgrade('Quadrillion fingers','The mouse and cursors gain <b>+20</b> cookies for each non-cursor object owned.<q>clickityclickityclickityclickityclick</q>',50000000000,[3,6]);
 		
 		order=200;new Game.Upgrade('Prune juice','Grandmas are <b>twice</b> as efficient.<q>Gets me going.</q>',Game.Objects['Schoolboy'].basePrice*tier4,[1,2]);
-		order=300;new Game.Upgrade('Genetically-modified cookies','Farms are <b>twice</b> as efficient.<q>All-natural mutations.</q>',Game.Objects['Farm'].basePrice*tier4,[2,2]);
+		order=300;new Game.Upgrade('Genetically-modified cookies','Farms are <b>twice</b> as efficient.<q>All-natural mutations.</q>',Game.Objects['Student'].basePrice*tier4,[2,2]);
 		order=400;new Game.Upgrade('Radium reactors','Factories are <b>twice</b> as efficient.<q>Gives your cookies a healthy glow.</q>',Game.Objects['Factory'].basePrice*tier4,[4,2]);
 		order=500;new Game.Upgrade('Ultimadrill','Mines are <b>twice</b> as efficient.<q>Pierce the heavens, etc.</q>',Game.Objects['Mine'].basePrice*tier4,[3,2]);
 		order=600;new Game.Upgrade('Warp drive','Shipments are <b>twice</b> as efficient.',Game.Objects['Shipment'].basePrice*tier4,[5,2]);
@@ -2309,7 +2309,7 @@ Game.Launch=function()
 		type='';power=0;
 		
 		order=250;
-		new Game.Upgrade('Farmer grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Farm'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
+		new Game.Upgrade('Farmer grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Student'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
 		new Game.Upgrade('Worker grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Factory'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
 		new Game.Upgrade('Miner grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Mine'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
 		new Game.Upgrade('Cosmic grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Shipment'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
