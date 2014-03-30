@@ -1695,6 +1695,7 @@ Game.Launch=function()
 			this.name=name;
 			this.displayName=this.name;
 			if (this.name == 'Factory') this.displayName='Teacher';//lalaka
+			if (this.name == 'Mine') this.displayName='Computer';
 			commonName=commonName.split('|');
 			this.single=commonName[0];
 			this.plural=commonName[1];
@@ -1981,7 +1982,7 @@ Game.Launch=function()
 			return Game.ComputeCps(10,Game.Has('Sturdier conveyor belts')*4,Game.Has('Child labor')+Game.Has('Sweatshop')+Game.Has('Radium reactors'));
 		},Game.NewDrawFunction(0,32,2,64,1,-22),function(){	});
 		
-		new Game.Object('Mine','mine|mines|mined','Mines out cookie dough and chocolate chips.','mine','mineIcon','mineBackground',10000,function(){
+		new Game.Object('Mine','computer|computers|calculated','Quickly calculate integrals.','mine','mineIcon','mineBackground',10000,function(){
 			return Game.ComputeCps(40,Game.Has('Sugar gas')*10,Game.Has('Megadrill')+Game.Has('Ultradrill')+Game.Has('Ultimadrill'));
 		},Game.NewDrawFunction(0,16,16,64,2,24),function(){ });
 		
@@ -3034,7 +3035,7 @@ Game.Launch=function()
 			if (Game.cookies>=me.price) l('product'+me.id).className='product enabled'; else l('product'+me.id).className='product disabled';
 			
 			//update object info
-			if (l('rowInfo'+me.id) && Game.T%5==0) l('rowInfoContent'+me.id).innerHTML='&bull; '+me.amount+' '+(me.amount==1?me.single:me.plural)+'<br>&bull; producing '+Beautify(me.storedTotalCps,1)+' '+(me.storedTotalCps==1?'cookie':'cookies')+' per second<br>&bull; total : '+Beautify(me.totalCookies)+' '+(Math.floor(me.totalCookies)==1?'cookie':'cookies')+' '+me.actionName;
+			if (l('rowInfo'+me.id) && Game.T%5==0) l('rowInfoContent'+me.id).innerHTML='&bull; '+me.amount+' '+(me.amount==1?me.single:me.plural)+'<br>&bull; taking '+Beautify(me.storedTotalCps,1)+' '+(me.storedTotalCps==1?'integral':'integrals')+' per second<br>&bull; total : '+Beautify(me.totalCookies)+' '+(Math.floor(me.totalCookies)==1?'integral':'integrals')+' '+me.actionName;
 		}
 		
 		//make upgrades full-opacity if we can buy them
