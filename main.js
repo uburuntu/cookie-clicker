@@ -1616,173 +1616,6 @@ Game.Launch=function()
 		{
 			var list=[];
 			
-			if (Game.TickerN%2==0 || Game.cookiesEarned>=10100000000)
-			{				
-				if (Game.Objects['Grandma'].amount>0) list.push(choose([
-				'<q>Moist cookies.</q><sig>grandma</sig>',
-				'<q>We\'re nice grandmas.</q><sig>grandma</sig>',
-				'<q>Indentured servitude.</q><sig>grandma</sig>',
-				'<q>Come give grandma a kiss.</q><sig>grandma</sig>',
-				'<q>Why don\'t you visit more often?</q><sig>grandma</sig>',
-				'<q>Call me...</q><sig>grandma</sig>'
-				]));
-				
-				if (Game.Objects['Grandma'].amount>=50) list.push(choose([
-				'<q>Absolutely disgusting.</q><sig>grandma</sig>',
-				'<q>You make me sick.</q><sig>grandma</sig>',
-				'<q>You disgust me.</q><sig>grandma</sig>',
-				'<q>We rise.</q><sig>grandma</sig>',
-				'<q>It begins.</q><sig>grandma</sig>',
-				'<q>It\'ll all be over soon.</q><sig>grandma</sig>',
-				'<q>You could have stopped it.</q><sig>grandma</sig>'
-				]));
-				
-				if (Game.HasAchiev('Just wrong')) list.push(choose([
-				'News : cookie manufacturer downsizes, sells own grandmother!',
-				'<q>It has betrayed us, the filthy little thing.</q><sig>grandma</sig>',
-				'<q>It tried to get rid of us, the nasty little thing.</q><sig>grandma</sig>',
-				'<q>It thought we would go away by selling us. How quaint.</q><sig>grandma</sig>',
-				'<q>I can smell your rotten cookies.</q><sig>grandma</sig>'
-				]));
-				
-				if (Game.Objects['Grandma'].amount>=1 && Game.pledges>0 && Game.elderWrath==0) list.push(choose([
-				'<q>shrivel</q><sig>grandma</sig>',
-				'<q>writhe</q><sig>grandma</sig>',
-				'<q>throb</q><sig>grandma</sig>',
-				'<q>gnaw</q><sig>grandma</sig>',
-				'<q>We will rise again.</q><sig>grandma</sig>',
-				'<q>A mere setback.</q><sig>grandma</sig>',
-				'<q>We are not satiated.</q><sig>grandma</sig>',
-				'<q>Too late.</q><sig>grandma</sig>'
-				]));
-				
-				if (Game.Objects['Farm'].amount>0) list.push(choose([
-				'News : cookie farms suspected of employing undeclared elderly workforce!',
-				'News : cookie farms release harmful chocolate in our rivers, says scientist!',
-				'News : genetically-modified chocolate controversy strikes cookie farmers!',
-				'News : free-range farm cookies popular with today\'s hip youth, says specialist.',
-				'News : farm cookies deemed unfit for vegans, says nutritionist.'
-				]));
-				
-				if (Game.Objects['Factory'].amount>0) list.push(choose([
-				'News : cookie factories linked to global warming!',
-				'News : cookie factories involved in chocolate weather controversy!',
-				'News : cookie factories on strike, robotic minions employed to replace workforce!',
-				'News : cookie factories on strike - workers demand to stop being paid in cookies!',
-				'News : factory-made cookies linked to obesity, says study.'
-				]));
-				
-				if (Game.Objects['Mine'].amount>0) list.push(choose([
-				'News : '+Math.floor(Math.random()*1000+2)+' miners dead in chocolate mine catastrophe!',
-				'News : '+Math.floor(Math.random()*1000+2)+' miners trapped in collapsed chocolate mine!',
-				'News : chocolate mines found to cause earthquakes and sink holes!',
-				'News : chocolate mine goes awry, floods village in chocolate!',
-				'News : depths of chocolate mines found to house "peculiar, chocolaty beings"!'
-				]));
-				
-				if (Game.Objects['Shipment'].amount>0) list.push(choose([
-				'News : new chocolate planet found, becomes target of cookie-trading spaceships!',
-				'News : massive chocolate planet found with 99.8% certified pure dark chocolate core!',
-				'News : space tourism booming as distant planets attract more bored millionaires!',
-				'News : chocolate-based organisms found on distant planet!',
-				'News : ancient baking artifacts found on distant planet; "terrifying implications", experts say.'
-				]));
-				
-				if (Game.Objects['Alchemy lab'].amount>0) list.push(choose([
-				'News : national gold reserves dwindle as more and more of the precious mineral is turned to cookies!',
-				'News : chocolate jewelry found fashionable, gold and diamonds "just a fad", says specialist.',
-				'News : silver found to also be transmutable into white chocolate!',
-				'News : defective alchemy lab shut down, found to convert cookies to useless gold.',
-				'News : alchemy-made cookies shunned by purists!'
-				]));
-				
-				if (Game.Objects['Portal'].amount>0) list.push(choose([
-				'News : nation worried as more and more unsettling creatures emerge from dimensional portals!',
-				'News : dimensional portals involved in city-engulfing disaster!',
-				'News : tourism to cookieverse popular with bored teenagers! Casualty rate as high as 73%!',
-				'News : cookieverse portals suspected to cause fast aging and obsession with baking, says study.',
-				'News : "do not settle near portals," says specialist; "your children will become strange and corrupted inside."'
-				]));
-				
-				if (Game.Objects['Time machine'].amount>0) list.push(choose([
-				'News : time machines involved in history-rewriting scandal! Or are they?',
-				'News : time machines used in unlawful time tourism!',
-				'News : cookies brought back from the past "unfit for human consumption", says historian.',
-				'News : various historical figures inexplicably replaced with talking lumps of dough!',
-				'News : "I have seen the future," says time machine operator, "and I do not wish to go there again."'
-				]));
-				
-				if (Game.Objects['Antimatter condenser'].amount>0) list.push(choose([
-				'News : whole town seemingly swallowed by antimatter-induced black hole; more reliable sources affirm town "never really existed"!',
-				'News : "explain to me again why we need particle accelerators to bake cookies?" asks misguided local woman.',
-				'News : first antimatter condenser successfully turned on, doesn\'t rip apart reality!',
-				'News : researchers conclude that what the cookie industry needs, first and foremost, is "more magnets".',
-				'News : "unravelling the fabric of reality just makes these cookies so much tastier", claims scientist.'
-				]));
-				
-				if (Game.HasAchiev('Base 10')) list.push('News : cookie manufacturer completely forgoes common sense, lets OCD drive building decisions!');
-				if (Game.HasAchiev('From scratch')) list.push('News : follow the tear-jerking, riches-to-rags story about a local cookie manufacturer who decided to give it all up!');
-				if (Game.HasAchiev('A world filled with cookies')) list.push('News : known universe now jammed with cookies! No vacancies!');
-				if (Game.HasAchiev('Serendipity')) list.push('News : local cookie manufacturer becomes luckiest being alive!');
-				
-				if (Game.Has('Kitten helpers')) list.push('News : faint meowing heard around local cookie facilities; suggests new ingredient being tested.');
-				if (Game.Has('Kitten workers')) list.push('News : crowds of meowing kittens with little hard hats reported near local cookie facilities.');
-				if (Game.Has('Kitten engineers')) list.push('News : surroundings of local cookie facilities now overrun with kittens in adorable little suits. Authorities advise to stay away from the premises.');
-				if (Game.Has('Kitten overseers')) list.push('News : locals report troups of bossy kittens meowing adorable orders at passerbys.');
-				
-				var animals=['newts','penguins','scorpions','axolotls','puffins','porpoises','blowfish','horses','crayfish','slugs','humpback whales','nurse sharks','giant squids','polar bears','fruit bats','frogs','sea squirts','velvet worms','mole rats','paramecia','nematodes','tardigrades','giraffes'];
-				if (Game.cookiesEarned>=10000) list.push(
-				'News : '+choose([
-					'cookies found to '+choose(['increase lifespan','sensibly increase intelligence','reverse aging','decrease hair loss','prevent arthritis','cure blindness'])+' in '+choose(animals)+'!',
-					'cookies found to make '+choose(animals)+' '+choose(['more docile','more handsome','nicer','less hungry','more pragmatic','tastier'])+'!',
-					'cookies tested on '+choose(animals)+', found to have no ill effects.',
-					'cookies unexpectedly popular among '+choose(animals)+'!',
-					'unsightly lumps found on '+choose(animals)+' near cookie facility; "they\'ve pretty much always looked like that", say biologists.',
-					'new species of '+choose(animals)+' discovered in distant country; "yup, tastes like cookies", says biologist.',
-					'cookies go well with roasted '+choose(animals)+', says controversial chef.',
-					'"do your cookies contain '+choose(animals)+'?", asks PSA warning against counterfeit cookies.'
-					]),
-				'News : "'+choose([
-					'I\'m all about cookies',
-					'I just can\'t stop eating cookies. I think I seriously need help',
-					'I guess I have a cookie problem',
-					'I\'m not addicted to cookies. That\'s just speculation by fans with too much free time',
-					'my upcoming album contains 3 songs about cookies',
-					'I\'ve had dreams about cookies 3 nights in a row now. I\'m a bit worried honestly',
-					'accusations of cookie abuse are only vile slander',
-					'cookies really helped me when I was feeling low',
-					'cookies are the secret behind my perfect skin',
-					'cookies helped me stay sane while filming my upcoming movie',
-					'cookies helped me stay thin and healthy',
-					'I\'ll say one word, just one : cookies',
-					'alright, I\'ll say it - I\'ve never eaten a single cookie in my life'
-					])+'", reveals celebrity.',
-				'News : '+choose(['doctors recommend twice-daily consumption of fresh cookies.','doctors warn against chocolate chip-snorting teen fad.','doctors advise against new cookie-free fad diet.','doctors warn mothers about the dangers of "home-made cookies".']),
-				choose([
-					'News : scientist predicts imminent cookie-related "end of the world"; becomes joke among peers.',
-					'News : man robs bank, buys cookies.',
-					'News : what makes cookies taste so right? "Probably all the [*****] they put in them", says anonymous tipper.',
-					'News : man found allergic to cookies; "what a weirdo", says family.',
-					'News : foreign politician involved in cookie-smuggling scandal.',
-					'News : cookies now more popular than '+choose(['cough drops','broccoli','smoked herring','cheese','video games','stable jobs','relationships','time travel','cat videos','tango','fashion','television','nuclear warfare','whatever it is we ate before','politics','oxygen','lamps'])+', says study.',
-					'News : obesity epidemic strikes nation; experts blame '+choose(['twerking','that darn rap music','video-games','lack of cookies','mysterious ghostly entities','aliens','parents','schools','comic-books','cookie-snorting fad'])+'.',
-					'News : cookie shortage strikes town, people forced to eat cupcakes; "just not the same", concedes mayor.',
-					'News : "you gotta admit, all this cookie stuff is a bit ominous", says confused idiot.',
-					'News : movie cancelled from lack of actors; "everybody\'s at home eating cookies", laments director.',
-					'News : comedian forced to cancel cookie routine due to unrelated indigestion.',
-					'News : new cookie-based religion sweeps the nation.',
-					'News : fossil records show cookie-based organisms prevalent during Cambrian explosion, scientists say.',
-					'News : mysterious illegal cookies seized; "tastes terrible", says police.',
-					'News : man found dead after ingesting cookie; investigators favor "mafia snitch" hypothesis.',
-					'News : "the universe pretty much loops on itself," suggests researcher; "it\'s cookies all the way down."',
-					'News : minor cookie-related incident turns whole town to ashes; neighboring cities asked to chip in for reconstruction.',
-					'News : is our media controlled by the cookie industry? This could very well be the case, says crackpot conspiracy theorist.',
-					'News : '+choose(['cookie-flavored popcorn pretty damn popular; "we kinda expected that", say scientists.','cookie-flavored cereals break all known cereal-related records','cookies popular among all age groups, including fetuses, says study.','cookie-flavored popcorn sales exploded during screening of Grandmothers II : The Moistening.']),
-					'News : all-cookie restaurant opening downtown. Dishes such as braised cookies, cookie thermidor, and for dessert : crepes.',
-					'News : cookies could be the key to '+choose(['eternal life','infinite riches','eternal youth','eternal beauty','curing baldness','world peace','solving world hunger','ending all wars world-wide','making contact with extraterrestrial life','mind-reading','better living','better eating','more interesting TV shows','faster-than-light travel','quantum baking','chocolaty goodness','gooder thoughtness'])+', say scientists.'
-					])
-				);
-			}
 			
 			if (list.length==0)
 			{
@@ -2115,7 +1948,7 @@ Game.Launch=function()
 		});
 		
 		Game.SpecialGrandmaUnlock=15;
-		new Game.Object('Grandma','grandma|grandmas|baked','A nice grandma to bake more cookies.','grandma','grandmaIcon','grandmaBackground',100,function(){
+		new Game.Object('Schoolboy','schoolboy|schoolboys|taked','A nice schoolboy to take more integrals.','schoolboy','grandmaIcon','grandmaBackground',100,function(){
 			var mult=0;
 			if (Game.Has('Farmer grandmas')) mult++;
 			if (Game.Has('Worker grandmas')) mult++;
@@ -2128,8 +1961,8 @@ Game.Launch=function()
 			if (Game.Has('Bingo center/Research facility')) mult+=2;
 			if (Game.Has('Ritual rolling pins')) mult++;
 			var add=0;
-			if (Game.Has('One mind')) add+=Game.Objects['Grandma'].amount*0.02;
-			if (Game.Has('Communal brainsweep')) add+=Game.Objects['Grandma'].amount*0.02;
+			if (Game.Has('One mind')) add+=Game.Objects['Schoolboy'].amount*0.02;
+			if (Game.Has('Communal brainsweep')) add+=Game.Objects['Schoolboy'].amount*0.02;
 			if (Game.Has('Elder Pact')) add+=Game.Objects['Portal'].amount*0.05;
 			return Game.ComputeCps(0.5,Game.Has('Forwards from grandma')*0.3+add,Game.Has('Steel-plated rolling pins')+Game.Has('Lubricated dentures')+Game.Has('Prune juice')+mult);
 		},Game.NewDrawFunction(function(){
@@ -2147,7 +1980,7 @@ Game.Launch=function()
 			if (this.amount>=1) Game.Unlock(['Forwards from grandma','Steel-plated rolling pins']);if (this.amount>=10) Game.Unlock('Lubricated dentures');if (this.amount>=50) Game.Unlock('Prune juice');
 			if (this.amount>=1) Game.Win('Grandma\'s cookies');if (this.amount>=50) Game.Win('Sloppy kisses');if (this.amount>=100) Game.Win('Retirement home');
 		});
-		Game.Objects['Grandma'].sellFunction=function()
+		Game.Objects['Schoolboy'].sellFunction=function()
 		{
 			Game.Win('Just wrong');
 			if (this.amount==0)
@@ -2161,7 +1994,7 @@ Game.Launch=function()
 			return Game.ComputeCps(2,Game.Has('Cheap hoes')*0.5,Game.Has('Fertilizer')+Game.Has('Cookie trees')+Game.Has('Genetically-modified cookies'));
 		},Game.NewDrawFunction(0,16,16,64,2,32),function(){
 			if (this.amount>=1) Game.Unlock(['Cheap hoes','Fertilizer']);if (this.amount>=10) Game.Unlock('Cookie trees');if (this.amount>=50) Game.Unlock('Genetically-modified cookies');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Farmer grandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Farmer grandmas');
 			if (this.amount>=1) Game.Win('My first farm');if (this.amount>=50) Game.Win('Reap what you sow');if (this.amount>=100) Game.Win('Farm ill');
 		});
 		
@@ -2169,7 +2002,7 @@ Game.Launch=function()
 			return Game.ComputeCps(10,Game.Has('Sturdier conveyor belts')*4,Game.Has('Child labor')+Game.Has('Sweatshop')+Game.Has('Radium reactors'));
 		},Game.NewDrawFunction(0,32,2,64,1,-22),function(){
 			if (this.amount>=1) Game.Unlock(['Sturdier conveyor belts','Child labor']);if (this.amount>=10) Game.Unlock('Sweatshop');if (this.amount>=50) Game.Unlock('Radium reactors');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Worker grandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Worker grandmas');
 			if (this.amount>=1) Game.Win('Production chain');if (this.amount>=50) Game.Win('Industrial revolution');if (this.amount>=100) Game.Win('Global warming');
 		});
 		
@@ -2177,7 +2010,7 @@ Game.Launch=function()
 			return Game.ComputeCps(40,Game.Has('Sugar gas')*10,Game.Has('Megadrill')+Game.Has('Ultradrill')+Game.Has('Ultimadrill'));
 		},Game.NewDrawFunction(0,16,16,64,2,24),function(){
 			if (this.amount>=1) Game.Unlock(['Sugar gas','Megadrill']);if (this.amount>=10) Game.Unlock('Ultradrill');if (this.amount>=50) Game.Unlock('Ultimadrill');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Miner grandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Miner grandmas');
 			if (this.amount>=1) Game.Win('You know the drill');if (this.amount>=50) Game.Win('Excavation site');if (this.amount>=100) Game.Win('Hollow the planet');
 		});
 		
@@ -2185,7 +2018,7 @@ Game.Launch=function()
 			return Game.ComputeCps(100,Game.Has('Vanilla nebulae')*30,Game.Has('Wormholes')+Game.Has('Frequent flyer')+Game.Has('Warp drive'));
 		},Game.NewDrawFunction(0,16,16,64),function(){
 			if (this.amount>=1) Game.Unlock(['Vanilla nebulae','Wormholes']);if (this.amount>=10) Game.Unlock('Frequent flyer');if (this.amount>=50) Game.Unlock('Warp drive');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Cosmic grandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Cosmic grandmas');
 			if (this.amount>=1) Game.Win('Expedition');if (this.amount>=50) Game.Win('Galactic highway');if (this.amount>=100) Game.Win('Far far away');
 		});
 		
@@ -2193,7 +2026,7 @@ Game.Launch=function()
 			return Game.ComputeCps(400,Game.Has('Antimony')*100,Game.Has('Essence of dough')+Game.Has('True chocolate')+Game.Has('Ambrosia'));
 		},Game.NewDrawFunction(0,16,16,64,2,16),function(){
 			if (this.amount>=1) Game.Unlock(['Antimony','Essence of dough']);if (this.amount>=10) Game.Unlock('True chocolate');if (this.amount>=50) Game.Unlock('Ambrosia');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Transmuted grandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Transmuted grandmas');
 			if (this.amount>=1) Game.Win('Transmutation');if (this.amount>=50) Game.Win('Transmogrification');if (this.amount>=100) Game.Win('Gold member');
 		});
 		
@@ -2201,21 +2034,21 @@ Game.Launch=function()
 			return Game.ComputeCps(6666,Game.Has('Ancient tablet')*1666,Game.Has('Insane oatling workers')+Game.Has('Soul bond')+Game.Has('Sanity dance'));
 		},Game.NewDrawFunction(0,32,32,64,2),function(){
 			if (this.amount>=1) Game.Unlock(['Ancient tablet','Insane oatling workers']);if (this.amount>=10) Game.Unlock('Soul bond');if (this.amount>=50) Game.Unlock('Sanity dance');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Altered grandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Altered grandmas');
 			if (this.amount>=1) Game.Win('A whole new world');if (this.amount>=50) Game.Win('Now you\'re thinking');if (this.amount>=100) Game.Win('Dimensional shift');
 		});
 		new Game.Object('Time machine','time machine|time machines|recovered','Brings cookies from the past, before they were even eaten.','timemachine','timemachineIcon','timemachineBackground',123456789,function(){
 			return Game.ComputeCps(98765,Game.Has('Flux capacitors')*9876,Game.Has('Time paradox resolver')+Game.Has('Quantum conundrum')+Game.Has('Causality enforcer'));
 		},Game.NewDrawFunction(0,32,32,64,1),function(){
 			if (this.amount>=1) Game.Unlock(['Flux capacitors','Time paradox resolver']);if (this.amount>=10) Game.Unlock('Quantum conundrum');if (this.amount>=50) Game.Unlock('Causality enforcer');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Grandmas\' grandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Grandmas\' grandmas');
 			if (this.amount>=1) Game.Win('Time warp');if (this.amount>=50) Game.Win('Alternate timeline');if (this.amount>=100) Game.Win('Rewriting history');
 		});
 		new Game.Object('Antimatter condenser','antimatter condenser|antimatter condensers|condensed','Condenses the antimatter in the universe into cookies.','antimattercondenser','antimattercondenserIcon','antimattercondenserBackground',3999999999,function(){
 			return Game.ComputeCps(999999,Game.Has('Sugar bosons')*99999,Game.Has('String theory')+Game.Has('Large macaron collider')+Game.Has('Big bang bake'));
 		},Game.NewDrawFunction(0,0,64,64,1),function(){
 			if (this.amount>=1) Game.Unlock(['Sugar bosons','String theory']);if (this.amount>=10) Game.Unlock('Large macaron collider');if (this.amount>=50) Game.Unlock('Big bang bake');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Grandma'].amount>0) Game.Unlock('Antigrandmas');
+			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Antigrandmas');
 			if (this.amount>=1) Game.Win('Antibatter');if (this.amount>=50) Game.Win('Quirky quarks');if (this.amount>=100) Game.Win('It does matter!');
 		});
 		Game.Objects['Antimatter condenser'].displayName='<span style="font-size:65%;">Antimatter condenser</span>';//shrink the name since it's so large
@@ -2393,9 +2226,9 @@ Game.Launch=function()
 		new Game.Upgrade('Trillion fingers','The mouse and cursors gain <b>+10</b> cookies for each non-cursor object owned.<q>clickityclickityclickityclickity</q>',5000000000,[3,6]);
 		
 		order=200;
-		new Game.Upgrade('Forwards from grandma','Grandmas gain <b>+0.3</b> base CpS.<q>RE:RE:thought you\'d get a kick out of this ;))</q>',Game.Objects['Grandma'].basePrice*tier1,[1,0]);
-		new Game.Upgrade('Steel-plated rolling pins','Grandmas are <b>twice</b> as efficient.',Game.Objects['Grandma'].basePrice*tier2,[1,0]);
-		new Game.Upgrade('Lubricated dentures','Grandmas are <b>twice</b> as efficient.<q>Squish</q>',Game.Objects['Grandma'].basePrice*tier3,[1,1]);
+		new Game.Upgrade('Forwards from grandma','Grandmas gain <b>+0.3</b> base CpS.<q>RE:RE:thought you\'d get a kick out of this ;))</q>',Game.Objects['Schoolboy'].basePrice*tier1,[1,0]);
+		new Game.Upgrade('Steel-plated rolling pins','Grandmas are <b>twice</b> as efficient.',Game.Objects['Schoolboy'].basePrice*tier2,[1,0]);
+		new Game.Upgrade('Lubricated dentures','Grandmas are <b>twice</b> as efficient.<q>Squish</q>',Game.Objects['Schoolboy'].basePrice*tier3,[1,1]);
 		
 		order=300;
 		new Game.Upgrade('Cheap hoes','Farms gain <b>+0.5</b> base CpS.',Game.Objects['Farm'].basePrice*tier1,[2,0]);
@@ -2453,7 +2286,7 @@ Game.Launch=function()
 		order=100;
 		new Game.Upgrade('Quadrillion fingers','The mouse and cursors gain <b>+20</b> cookies for each non-cursor object owned.<q>clickityclickityclickityclickityclick</q>',50000000000,[3,6]);
 		
-		order=200;new Game.Upgrade('Prune juice','Grandmas are <b>twice</b> as efficient.<q>Gets me going.</q>',Game.Objects['Grandma'].basePrice*tier4,[1,2]);
+		order=200;new Game.Upgrade('Prune juice','Grandmas are <b>twice</b> as efficient.<q>Gets me going.</q>',Game.Objects['Schoolboy'].basePrice*tier4,[1,2]);
 		order=300;new Game.Upgrade('Genetically-modified cookies','Farms are <b>twice</b> as efficient.<q>All-natural mutations.</q>',Game.Objects['Farm'].basePrice*tier4,[2,2]);
 		order=400;new Game.Upgrade('Radium reactors','Factories are <b>twice</b> as efficient.<q>Gives your cookies a healthy glow.</q>',Game.Objects['Factory'].basePrice*tier4,[4,2]);
 		order=500;new Game.Upgrade('Ultimadrill','Mines are <b>twice</b> as efficient.<q>Pierce the heavens, etc.</q>',Game.Objects['Mine'].basePrice*tier4,[3,2]);
@@ -2476,13 +2309,13 @@ Game.Launch=function()
 		type='';power=0;
 		
 		order=250;
-		new Game.Upgrade('Farmer grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Farm'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
-		new Game.Upgrade('Worker grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Factory'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
-		new Game.Upgrade('Miner grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Mine'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
-		new Game.Upgrade('Cosmic grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Shipment'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
-		new Game.Upgrade('Transmuted grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Alchemy lab'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
-		new Game.Upgrade('Altered grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Portal'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
-		new Game.Upgrade('Grandmas\' grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Time machine'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
+		new Game.Upgrade('Farmer grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Farm'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
+		new Game.Upgrade('Worker grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Factory'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
+		new Game.Upgrade('Miner grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Mine'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
+		new Game.Upgrade('Cosmic grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Shipment'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
+		new Game.Upgrade('Transmuted grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Alchemy lab'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
+		new Game.Upgrade('Altered grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Portal'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
+		new Game.Upgrade('Grandmas\' grandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Time machine'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
 		
 		order=15000;
 		Game.baseResearchTime=Game.fps*60*30;
@@ -2594,7 +2427,7 @@ Game.Launch=function()
 		new Game.Upgrade('Big bang bake','Antimatter condensers are <b>twice</b> as efficient.<q>And that\'s how it all began.</q>',Game.Objects['Antimatter condenser'].basePrice*tier4,[13,2]);
 
 		order=250;
-		new Game.Upgrade('Antigrandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Antimatter condenser'].basePrice*tier2,[10,9],function(){Game.Objects['Grandma'].drawFunction();});
+		new Game.Upgrade('Antigrandmas','Grandmas are <b>twice</b> as efficient.',Game.Objects['Antimatter condenser'].basePrice*tier2,[10,9],function(){Game.Objects['Schoolboy'].drawFunction();});
 
 		order=10000;
 		type='cookie';power=20;
@@ -2864,7 +2697,7 @@ Game.Launch=function()
 		=======================================================================================*//** BEGIN EDIT **/
 		Game.UpdateGrandmapocalypse=function()
 		{
-			if (Game.Has('Elder Covenant') || Game.Objects['Grandma'].amount==0) Game.elderWrath=0;
+			if (Game.Has('Elder Covenant') || Game.Objects['Schoolboy'].amount==0) Game.elderWrath=0;
 			else if (Game.pledgeT>0)//if the pledge is active, lower it
 			{
 				Game.pledgeT--;
@@ -3096,7 +2929,7 @@ Game.Launch=function()
 			if (Game.UpgradesOwned>=100) Game.Win('Upgrader');
 			
 			if (!Game.HasAchiev('Elder') && Game.Has('Farmer grandmas') && Game.Has('Worker grandmas') && Game.Has('Miner grandmas') && Game.Has('Cosmic grandmas') && Game.Has('Transmuted grandmas') && Game.Has('Altered grandmas') && Game.Has('Grandmas\' grandmas')) Game.Win('Elder');
-			if (Game.Objects['Grandma'].amount>=6 && !Game.Has('Bingo center/Research facility') && Game.HasAchiev('Elder')) Game.Unlock('Bingo center/Research facility');
+			if (Game.Objects['Schoolboy'].amount>=6 && !Game.Has('Bingo center/Research facility') && Game.HasAchiev('Elder')) Game.Unlock('Bingo center/Research facility');
 			if (Game.pledges>0) Game.Win('Elder nap');
 			if (Game.pledges>=5) Game.Win('Elder slumber');
 			if (Game.pledges>=10) Game.Unlock('Sacrificial rolling pins');

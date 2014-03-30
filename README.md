@@ -1,5 +1,8 @@
+
 cookie-clicker
 ==============
+
+http://uburuntu.github.io/math-clicker/
 
 This is a copy of the publicly available source of the game cookie clicker by orteil.  
 
