@@ -1497,27 +1497,18 @@ Game.Launch=function()
 				str+='<div class="section">Statistics</div>'+
 				'<div class="subsection">'+
 				'<div class="title">General</div>'+
-				'<div class="listing"><b>Cookies in bank :</b> <div class="price plain">'+Beautify(Game.cookies)+'</div></div>'+
-				'<div class="listing"><b>Cookies baked (all time) :</b> <div class="price plain">'+Beautify(Game.cookiesEarned)+'</div></div>'+
-				(Game.cookiesReset>0?'<div class="listing"><b>Cookies forfeited by resetting :</b> <div class="price plain">'+Beautify(Game.cookiesReset)+'</div></div>':'')+
+				'<div class="listing"><b>Integrals in bank :</b> <div class="price plain">'+Beautify(Game.cookies)+'</div></div>'+
+				'<div class="listing"><b>Integrals taked (all time) :</b> <div class="price plain">'+Beautify(Game.cookiesEarned)+'</div></div>'+
+				(Game.cookiesReset>0?'<div class="listing"><b>Integrals forfeited by resetting :</b> <div class="price plain">'+Beautify(Game.cookiesReset)+'</div></div>':'')+
 				'<div class="listing"><b>Game started :</b> '+date+' ago</div>'+
 				'<div class="listing"><b>Buildings owned :</b> '+Beautify(buildingsOwned)+'</div>'+
-				'<div class="listing"><b>Cookies per second :</b> '+Beautify(Game.cookiesPs,1)+' <small>(multiplier : '+Beautify(Math.round(Game.globalCpsMult*100),1)+'%)</small></div>'+
-				'<div class="listing"><b>Cookies per click :</b> '+Beautify(Game.computedMouseCps,1)+'</div>'+
-				'<div class="listing"><b>Cookie clicks :</b> '+Beautify(Game.cookieClicks)+'</div>'+
-				'<div class="listing"><b>Hand-made cookies :</b> '+Beautify(Game.handmadeCookies)+'</div>'+
-				'<div class="listing"><b>Golden cookie clicks :</b> '+Beautify(Game.goldenClicks)+'</div>'+//' <span class="hidden">(<b>Missed golden cookies :</b> '+Beautify(Game.missedGoldenClicks)+')</span></div>'+
+				'<div class="listing"><b>Integrals per second :</b> '+Beautify(Game.cookiesPs,1)+' <small>(multiplier : '+Beautify(Math.round(Game.globalCpsMult*100),1)+'%)</small></div>'+
+				'<div class="listing"><b>Integrals per click :</b> '+Beautify(Game.computedMouseCps,1)+'</div>'+
+				'<div class="listing"><b>Integral clicks :</b> '+Beautify(Game.cookieClicks)+'</div>'+
+				'<div class="listing"><b>Hand-made integrals :</b> '+Beautify(Game.handmadeCookies)+'</div>'+
+				//' <span class="hidden">(<b>Missed golden cookies :</b> '+Beautify(Game.missedGoldenClicks)+')</span></div>'+
 				'<br><div class="listing"><b>Running version :</b> '+Game.version+'</div>'+
-				
-				((researchStr!='' || wrathStr!='' || pledgeStr!='')?(
-				'</div><div class="subsection">'+
-				'<div class="title">Special</div>'+
-				(researchStr!=''?'<div class="listing"><b>Research :</b> '+researchStr+' remaining</div>':'')+
-				(wrathStr!=''?'<div class="listing"><b>Grandmatriarchs status :</b> '+wrathStr+'</div>':'')+
-				(pledgeStr!=''?'<div class="listing"><b>Pledge :</b> '+pledgeStr+' remaining</div>':'')+
-				''
-				):'')+
-				
+								
 				(Game.prestige['Heavenly chips']>0?(
 				'</div><div class="subsection">'+
 				'<div class="title">Prestige</div>'+
@@ -1530,15 +1521,6 @@ Game.Launch=function()
 				'<div class="listing" style="overflow-y:hidden;">'+upgrades+'</div>'+
 				(cookieUpgrades!=''?('<div class="listing"><b>Cookies</b></div>'+
 				'<div class="listing" style="overflow-y:hidden;">'+cookieUpgrades+'</div>'):'')+
-				'</div><div class="subsection" style="padding-bottom:128px;">'+
-				'<div class="title">Achievements</div>'+
-				'<div class="listing"><b>Unlocked :</b> '+achievementsOwned+'/'+achievementsTotal+' ('+Math.round((achievementsOwned/achievementsTotal)*100)+'%)</div>'+
-				'<div class="listing"><b>Milk :</b> '+Math.round(Game.milkProgress*100)+'% ('+milkName+') <small>(Note : you gain milk through achievements. Milk can unlock unique upgrades over time.)</small></div>'+
-				'<div class="listing" style="overflow-y:hidden;">'+achievements+'</div>'+
-				(shadowAchievements!=''?(
-					'<div class="listing"><b>Shadow achievements</b> <small>(These are feats that are either unfair or difficult to attain. They do not give milk.)</small></div>'+
-					'<div class="listing" style="overflow-y:hidden;">'+shadowAchievements+'</div>'
-				):'')+
 				'</div>'
 				;
 			}
@@ -1712,6 +1694,7 @@ Game.Launch=function()
 			this.id=Game.ObjectsN;
 			this.name=name;
 			this.displayName=this.name;
+			if (this.name == 'Factory') this.displayName='Teacher';//lalaka
 			commonName=commonName.split('|');
 			this.single=commonName[0];
 			this.plural=commonName[1];
@@ -1992,65 +1975,33 @@ Game.Launch=function()
 		
 		new Game.Object('Student','student|students|taked','Takes integrals faster than schoolboys.','farm','farmIcon','farmBackground',500,function(){
 			return Game.ComputeCps(2,Game.Has('Cheap hoes')*0.5,Game.Has('Fertilizer')+Game.Has('Cookie trees')+Game.Has('Genetically-modified cookies'));
-		},Game.NewDrawFunction(0,16,16,64,2,32),function(){
-			if (this.amount>=1) Game.Unlock(['Cheap hoes','Fertilizer']);if (this.amount>=10) Game.Unlock('Cookie trees');if (this.amount>=50) Game.Unlock('Genetically-modified cookies');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Farmer grandmas');
-			if (this.amount>=1) Game.Win('My first farm');if (this.amount>=50) Game.Win('Reap what you sow');if (this.amount>=100) Game.Win('Farm ill');
-		});
+		},Game.NewDrawFunction(0,16,16,64,2,32),function(){ });
 		
-		new Game.Object('Factory','factory|factories|mass-produced','Produces large quantities of cookies.','factory','factoryIcon','factoryBackground',3000,function(){
+		new Game.Object('Factory','teacher|teachers|taked','Takes large quantities of integrals.','factory','factoryIcon','factoryBackground',3000,function(){
 			return Game.ComputeCps(10,Game.Has('Sturdier conveyor belts')*4,Game.Has('Child labor')+Game.Has('Sweatshop')+Game.Has('Radium reactors'));
-		},Game.NewDrawFunction(0,32,2,64,1,-22),function(){
-			if (this.amount>=1) Game.Unlock(['Sturdier conveyor belts','Child labor']);if (this.amount>=10) Game.Unlock('Sweatshop');if (this.amount>=50) Game.Unlock('Radium reactors');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Worker grandmas');
-			if (this.amount>=1) Game.Win('Production chain');if (this.amount>=50) Game.Win('Industrial revolution');if (this.amount>=100) Game.Win('Global warming');
-		});
+		},Game.NewDrawFunction(0,32,2,64,1,-22),function(){	});
 		
 		new Game.Object('Mine','mine|mines|mined','Mines out cookie dough and chocolate chips.','mine','mineIcon','mineBackground',10000,function(){
 			return Game.ComputeCps(40,Game.Has('Sugar gas')*10,Game.Has('Megadrill')+Game.Has('Ultradrill')+Game.Has('Ultimadrill'));
-		},Game.NewDrawFunction(0,16,16,64,2,24),function(){
-			if (this.amount>=1) Game.Unlock(['Sugar gas','Megadrill']);if (this.amount>=10) Game.Unlock('Ultradrill');if (this.amount>=50) Game.Unlock('Ultimadrill');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Miner grandmas');
-			if (this.amount>=1) Game.Win('You know the drill');if (this.amount>=50) Game.Win('Excavation site');if (this.amount>=100) Game.Win('Hollow the planet');
-		});
+		},Game.NewDrawFunction(0,16,16,64,2,24),function(){ });
 		
 		new Game.Object('Shipment','shipment|shipments|shipped','Brings in fresh cookies from the cookie planet.','shipment','shipmentIcon','shipmentBackground',40000,function(){
 			return Game.ComputeCps(100,Game.Has('Vanilla nebulae')*30,Game.Has('Wormholes')+Game.Has('Frequent flyer')+Game.Has('Warp drive'));
-		},Game.NewDrawFunction(0,16,16,64),function(){
-			if (this.amount>=1) Game.Unlock(['Vanilla nebulae','Wormholes']);if (this.amount>=10) Game.Unlock('Frequent flyer');if (this.amount>=50) Game.Unlock('Warp drive');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Cosmic grandmas');
-			if (this.amount>=1) Game.Win('Expedition');if (this.amount>=50) Game.Win('Galactic highway');if (this.amount>=100) Game.Win('Far far away');
-		});
+		},Game.NewDrawFunction(0,16,16,64),function(){ });
 		
 		new Game.Object('Alchemy lab','alchemy lab|alchemy labs|transmuted','Turns gold into cookies!','alchemylab','alchemylabIcon','alchemylabBackground',200000,function(){
 			return Game.ComputeCps(400,Game.Has('Antimony')*100,Game.Has('Essence of dough')+Game.Has('True chocolate')+Game.Has('Ambrosia'));
-		},Game.NewDrawFunction(0,16,16,64,2,16),function(){
-			if (this.amount>=1) Game.Unlock(['Antimony','Essence of dough']);if (this.amount>=10) Game.Unlock('True chocolate');if (this.amount>=50) Game.Unlock('Ambrosia');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Transmuted grandmas');
-			if (this.amount>=1) Game.Win('Transmutation');if (this.amount>=50) Game.Win('Transmogrification');if (this.amount>=100) Game.Win('Gold member');
-		});
+		},Game.NewDrawFunction(0,16,16,64,2,16),function(){ });
 		
 		new Game.Object('Portal','portal|portals|retrieved','Opens a door to the Cookieverse.','portal','portalIcon','portalBackground',1666666,function(){
 			return Game.ComputeCps(6666,Game.Has('Ancient tablet')*1666,Game.Has('Insane oatling workers')+Game.Has('Soul bond')+Game.Has('Sanity dance'));
-		},Game.NewDrawFunction(0,32,32,64,2),function(){
-			if (this.amount>=1) Game.Unlock(['Ancient tablet','Insane oatling workers']);if (this.amount>=10) Game.Unlock('Soul bond');if (this.amount>=50) Game.Unlock('Sanity dance');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Altered grandmas');
-			if (this.amount>=1) Game.Win('A whole new world');if (this.amount>=50) Game.Win('Now you\'re thinking');if (this.amount>=100) Game.Win('Dimensional shift');
-		});
+		},Game.NewDrawFunction(0,32,32,64,2),function(){ });
 		new Game.Object('Time machine','time machine|time machines|recovered','Brings cookies from the past, before they were even eaten.','timemachine','timemachineIcon','timemachineBackground',123456789,function(){
 			return Game.ComputeCps(98765,Game.Has('Flux capacitors')*9876,Game.Has('Time paradox resolver')+Game.Has('Quantum conundrum')+Game.Has('Causality enforcer'));
-		},Game.NewDrawFunction(0,32,32,64,1),function(){
-			if (this.amount>=1) Game.Unlock(['Flux capacitors','Time paradox resolver']);if (this.amount>=10) Game.Unlock('Quantum conundrum');if (this.amount>=50) Game.Unlock('Causality enforcer');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Grandmas\' grandmas');
-			if (this.amount>=1) Game.Win('Time warp');if (this.amount>=50) Game.Win('Alternate timeline');if (this.amount>=100) Game.Win('Rewriting history');
-		});
+		},Game.NewDrawFunction(0,32,32,64,1),function(){ });
 		new Game.Object('Antimatter condenser','antimatter condenser|antimatter condensers|condensed','Condenses the antimatter in the universe into cookies.','antimattercondenser','antimattercondenserIcon','antimattercondenserBackground',3999999999,function(){
 			return Game.ComputeCps(999999,Game.Has('Sugar bosons')*99999,Game.Has('String theory')+Game.Has('Large macaron collider')+Game.Has('Big bang bake'));
-		},Game.NewDrawFunction(0,0,64,64,1),function(){
-			if (this.amount>=1) Game.Unlock(['Sugar bosons','String theory']);if (this.amount>=10) Game.Unlock('Large macaron collider');if (this.amount>=50) Game.Unlock('Big bang bake');
-			if (this.amount>=Game.SpecialGrandmaUnlock && Game.Objects['Schoolboy'].amount>0) Game.Unlock('Antigrandmas');
-			if (this.amount>=1) Game.Win('Antibatter');if (this.amount>=50) Game.Win('Quirky quarks');if (this.amount>=100) Game.Win('It does matter!');
-		});
+		},Game.NewDrawFunction(0,0,64,64,1),function(){ });
 		Game.Objects['Antimatter condenser'].displayName='<span style="font-size:65%;">Antimatter condenser</span>';//shrink the name since it's so large
 		
 		/*=====================================================================================
@@ -3059,8 +3010,8 @@ Game.Launch=function()
 			if (Game.elderWrathD>=1 && Game.elderWrathD<1.5) l('cookieShower').style.opacity=1-((Game.elderWrathD-1)/0.5);
 		}
 		
-		var unit=(Math.round(Game.cookiesd)==1?' cookie':' cookies');
-		if (Math.round(Game.cookiesd).toString().length>11) unit='<br>cookies';
+		var unit=(Math.round(Game.cookiesd)==1?' integral':' integrals');
+		if (Math.round(Game.cookiesd).toString().length>11) unit='<br>integrals';
 		l('cookies').innerHTML=Beautify(Math.round(Game.cookiesd))+unit+'<div style="font-size:50%;">per second : '+Beautify(Game.cookiesPs,1)+'</div>';//display cookie amount
 		
 		/*
