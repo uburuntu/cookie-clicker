@@ -1697,6 +1697,7 @@ Game.Launch=function()
 			if (this.name == 'Factory') this.displayName='Teacher';//lalaka
 			if (this.name == 'Mine') this.displayName='Computer';
 			if (this.name == 'Shipment') this.displayName='Professor';
+			if (this.name == 'Alchemy lab') this.displayName='<span style="font-size:75%;">Artificial Intelligence</span>';
 			commonName=commonName.split('|');
 			this.single=commonName[0];
 			this.plural=commonName[1];
@@ -1991,7 +1992,7 @@ Game.Launch=function()
 			return Game.ComputeCps(100,Game.Has('Vanilla nebulae')*30,Game.Has('Wormholes')+Game.Has('Frequent flyer')+Game.Has('Warp drive'));
 		},Game.NewDrawFunction(0,16,16,64),function(){ });
 		
-		new Game.Object('Alchemy lab','alchemy lab|alchemy labs|transmuted','Turns gold into cookies!','alchemylab','alchemylabIcon','alchemylabBackground',200000,function(){
+		new Game.Object('Alchemy lab','AI|AIs|calculated','Turns gold into cookies!','alchemylab','alchemylabIcon','alchemylabBackground',200000,function(){
 			return Game.ComputeCps(400,Game.Has('Antimony')*100,Game.Has('Essence of dough')+Game.Has('True chocolate')+Game.Has('Ambrosia'));
 		},Game.NewDrawFunction(0,16,16,64,2,16),function(){ });
 		
