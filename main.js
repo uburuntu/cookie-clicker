@@ -1696,6 +1696,7 @@ Game.Launch=function()
 			this.displayName=this.name;
 			if (this.name == 'Factory') this.displayName='Teacher';//lalaka
 			if (this.name == 'Mine') this.displayName='Computer';
+			if (this.name == 'Shipment') this.displayName='Professor';
 			commonName=commonName.split('|');
 			this.single=commonName[0];
 			this.plural=commonName[1];
@@ -1986,7 +1987,7 @@ Game.Launch=function()
 			return Game.ComputeCps(40,Game.Has('Sugar gas')*10,Game.Has('Megadrill')+Game.Has('Ultradrill')+Game.Has('Ultimadrill'));
 		},Game.NewDrawFunction(0,16,16,64,2,24),function(){ });
 		
-		new Game.Object('Shipment','shipment|shipments|shipped','Brings in fresh cookies from the cookie planet.','shipment','shipmentIcon','shipmentBackground',40000,function(){
+		new Game.Object('Shipment','professor|professors|taked','Takes even the most complicated integrals.','shipment','shipmentIcon','shipmentBackground',40000,function(){
 			return Game.ComputeCps(100,Game.Has('Vanilla nebulae')*30,Game.Has('Wormholes')+Game.Has('Frequent flyer')+Game.Has('Warp drive'));
 		},Game.NewDrawFunction(0,16,16,64),function(){ });
 		
