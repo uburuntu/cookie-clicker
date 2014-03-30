@@ -1992,7 +1992,7 @@ Game.Launch=function()
 			return Game.ComputeCps(100,Game.Has('Vanilla nebulae')*30,Game.Has('Wormholes')+Game.Has('Frequent flyer')+Game.Has('Warp drive'));
 		},Game.NewDrawFunction(0,16,16,64),function(){ });
 		
-		new Game.Object('Alchemy lab','AI|AIs|calculated','Turns gold into cookies!','alchemylab','alchemylabIcon','alchemylabBackground',200000,function(){
+		new Game.Object('Alchemy lab','AI|AIs|calculated','Power of computer and human!','alchemylab','alchemylabIcon','alchemylabBackground',200000,function(){
 			return Game.ComputeCps(400,Game.Has('Antimony')*100,Game.Has('Essence of dough')+Game.Has('True chocolate')+Game.Has('Ambrosia'));
 		},Game.NewDrawFunction(0,16,16,64,2,16),function(){ });
 		
@@ -2434,7 +2434,7 @@ Game.Launch=function()
 		
 		Game.Win=function(what)
 		{
-			if (typeof what==='string')
+			/*if (typeof what==='string')
 			{
 				if (Game.Achievements[what])
 				{
@@ -2447,7 +2447,7 @@ Game.Launch=function()
 					}
 				}
 			}
-			else {for (var i in what) {Game.Win(what[i]);}}
+			else {for (var i in what) {Game.Win(what[i]);}}*/
 		}
 		
 		Game.HasAchiev=function(what)
