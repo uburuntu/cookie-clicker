@@ -2760,7 +2760,7 @@ Game.Launch=function()
 		if (Game.storeToRebuild) Game.RebuildStore();
 		if (Game.upgradesToRebuild) Game.RebuildUpgrades();
 		
-		if (Game.T%(Game.fps)==0) document.title=Beautify(Game.cookies)+' '+(Game.cookies==1?'cookie':'cookies')+' - Cookie Clicker';
+		if (Game.T%(Game.fps)==0) document.title=Beautify(Game.cookies)+' '+(Game.cookies==1?'integral':'integrals')+' - Math Clicker';
 		
 		Game.TickerAge--;
 		if (Game.TickerAge<=0 || Game.Ticker=='') Game.getNewTicker();
