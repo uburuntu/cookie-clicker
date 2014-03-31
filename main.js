@@ -173,11 +173,11 @@ Game.Launch=function()
 		Game.T=0;
 		Game.fps=30;
 		
-		Game.version=1.036;
+		Game.version=1.1;
 		Game.beta=0;
 		l('versionNumber').innerHTML='v.'+Game.version+(Game.beta?' <span style="color:#ff0;">beta</span>':'');
 		//l('links').innerHTML=(Game.beta?'<a href="../" target="blank">Live version</a> | ':'<a href="beta" target="blank">Try the beta!</a> | ')+'<a href="http://orteil.dashnet.org/experiments/cookie/" target="blank">Cookie Clicker Classic</a>';
-		l('links').innerHTML='<a href="http://orteil.dashnet.org/experiments/cookie/" target="blank">Cookie Clicker Classic</a>';
+		l('links').innerHTML='Original idea by <span style="font-weight:bold;">Orteil</span>';
 		
 		//latency compensator stuff
 		Game.time=new Date().getTime();
@@ -892,20 +892,20 @@ Game.Launch=function()
 					Game.frenzy=Game.fps*time;
 					Game.frenzyPower=7;
 					Game.recalculateGains=1;
-					Game.Popup('Frenzy : cookie production x7 for '+time+' seconds!');
+					Game.Popup('Frenzy : integral production x7 for '+time+' seconds!');
 				}
 				else if (choice=='multiply cookies')
 				{
 					var moni=Math.min(Game.cookies*0.1,Game.cookiesPs*60*20)+13;//add 10% to cookies owned (+13), or 20 minutes of cookie production - whichever is lowest
 					Game.Earn(moni);
-					Game.Popup('Lucky! +'+Beautify(moni)+' cookies!');
+					Game.Popup('Lucky! +'+Beautify(moni)+' integrals!');
 				}
 				else if (choice=='ruin cookies')
 				{
 					var moni=Math.min(Game.cookies*0.05,Game.cookiesPs*60*10)+13;//lose 5% of cookies owned (-13), or 10 minutes of cookie production - whichever is lowest
 					moni=Math.min(Game.cookies,moni);
 					Game.Spend(moni);
-					Game.Popup('Ruin! Lost '+Beautify(moni)+' cookies!');
+					Game.Popup('Ruin! Lost '+Beautify(moni)+' integrals!');
 				}
 				else if (choice=='blood frenzy')
 				{
@@ -913,7 +913,7 @@ Game.Launch=function()
 					Game.frenzy=Game.fps*time;//*2;//we shouldn't need *2 but I keep getting reports of it lasting only 3 seconds
 					Game.frenzyPower=666;
 					Game.recalculateGains=1;
-					Game.Popup('Elder frenzy : cookie production x666 for '+time+' seconds!');
+					Game.Popup('Elder frenzy : integral production x666 for '+time+' seconds!');
 				}
 				else if (choice=='clot')
 				{
@@ -921,7 +921,7 @@ Game.Launch=function()
 					Game.frenzy=Game.fps*time;
 					Game.frenzyPower=0.5;
 					Game.recalculateGains=1;
-					Game.Popup('Clot : cookie production halved for '+time+' seconds!');
+					Game.Popup('Clot : integral production halved for '+time+' seconds!');
 				}
 				else if (choice=='click frenzy')
 				{
@@ -936,7 +936,7 @@ Game.Launch=function()
 					var moni='';
 					for (var i=0;i<Game.goldenCookie.chain;i++) {moni+='6';}
 					moni=parseInt(moni);
-					Game.Popup('Cookie chain : +'+Beautify(moni)+' cookies!');
+					Game.Popup('Integral chain : +'+Beautify(moni)+' integrals!');
 					if ((Math.random()<0.1 || Game.goldenCookie.chain>12 || moni>=Game.cookies*1) && Game.goldenCookie.chain>4) Game.goldenCookie.chain=0;
 					Game.Earn(moni);
 				}
@@ -1246,7 +1246,7 @@ Game.Launch=function()
 				Game.WriteButton('fancy','fancyButton','Fancy graphics ON','Fancy graphics OFF','Game.ToggleFancy();')+
 				Game.WriteButton('particles','particlesButton','Particles ON','Particles OFF')+
 				Game.WriteButton('numbers','numbersButton','Numbers ON','Numbers OFF')+
-				Game.WriteButton('milk','milkButton','Milk ON','Milk OFF')+
+				
 				'</div>'+
 				'<div class="listing">'+Game.WriteButton('autoupdate','autoupdateButton','Offline mode OFF','Offline mode ON')+'<label>(note : this disables update notifications)</label></div>'+
 				//'<div class="listing">'+Game.WriteButton('autosave','autosaveButton','Autosave ON','Autosave OFF')+'</div>'+
@@ -1257,123 +1257,11 @@ Game.Launch=function()
 			{
 				str+='<div class="section">Updates</div>'+
 				'<div class="subsection">'+
-				'<div class="title">Now working on :</div>'+
-				'<div class="listing">-android port (iOS and others later)</div>'+
-				'<div class="listing">-dungeons</div>'+
-				
-				'</div><div class="subsection">'+
-				'<div class="title">What\'s next :</div>'+
-				'<div class="listing">-dungeons! <a href="http://orteil42.tumblr.com/post/61142292486" target="_blank">(check them out!)</a></div>'+
-				'<div class="listing">-more buildings and upgrades!</div>'+
-				'<div class="listing">-revamping the prestige system!</div>'+
-				'<div class="listing"><span class="warning">Note : this game is updated fairly frequently, which often involves rebalancing. Expect to see prices and cookies/second vary wildly from one update to another!</span></div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">15/09/2013 - anticookies</div>'+
-				'<div class="listing">-ran out of regular matter to make your cookies? Try our new antimatter condensers!</div>'+
-				'<div class="listing">-renamed Hard-reset to "Wipe save" to avoid confusion</div>'+
-				'<div class="listing">-reset achievements are now regular achievements and require cookies baked all time, not cookies in bank</div>'+
-				'<div class="listing">-heavenly chips have been nerfed a bit (and are now awarded following a geometric progression : 1 trillion for the first, 2 for the second, etc); the prestige system will be extensively reworked in a future update (after dungeons)</div>'+
-				'<div class="listing">-golden cookie clicks are no longer reset by soft-resets</div>'+
-				'<div class="listing">-you can now see how long you\'ve been playing in the stats</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">08/09/2013 - everlasting cookies</div>'+
-				'<div class="listing">-added a prestige system - resetting gives you permanent CpS boosts (the more cookies made before resetting, the bigger the boost!)</div>'+
-				'<div class="listing">-save format has been slightly modified to take less space</div>'+
-				'<div class="listing">-Leprechaun has been bumped to 777 golden cookies clicked and is now shadow; Fortune is the new 77 golden cookies achievement</div>'+
-				'<div class="listing">-clicking frenzy is now x777</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">04/09/2013 - smarter cookie</div>'+
-				'<div class="listing">-golden cookies only have 20% chance of giving the same outcome twice in a row now</div>'+
-				'<div class="listing">-added a golden cookie upgrade</div>'+
-				'<div class="listing">-added an upgrade that makes pledges last twice as long (requires having pledged 10 times)</div>'+
-				'<div class="listing">-Quintillion fingers is now twice as efficient</div>'+
-				'<div class="listing">-Uncanny clicker was really too unpredictable; it is now a regular achievement and no longer requires a world record, just *pretty fast* clicking</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">02/09/2013 - a better way out</div>'+
-				'<div class="listing">-Elder Covenant is even cheaper, and revoking it is cheaper still (also added a new achievement for getting it)</div>'+
-				'<div class="listing">-each grandma upgrade now requires 15 of the matching building</div>'+
-				'<div class="listing">-the dreaded bottom cursor has been fixed with a new cursor display style</div>'+
-				'<div class="listing">-added an option for faster, cheaper graphics</div>'+
-				'<div class="listing">-base64 encoding has been redone; this might make saving possible again on some older browsers</div>'+
-				'<div class="listing">-shadow achievements now have their own section</div>'+
-				'<div class="listing">-raspberry juice is now named raspberry milk, despite raspberry juice being delicious and going unquestionably well with cookies</div>'+
-				'<div class="listing">-HOTFIX : cursors now click; fancy graphics button renamed; cookies amount now more visible against cursors</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">01/09/2013 - sorting things out</div>'+
-				'<div class="listing">-upgrades and achievements are properly sorted in the stats screen</div>'+
-				'<div class="listing">-made Elder Covenant much cheaper and less harmful</div>'+
-				'<div class="listing">-importing from the first version has been disabled, as promised</div>'+
-				'<div class="listing">-"One mind" now actually asks you to confirm the upgrade</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">31/08/2013 - hotfixes</div>'+
-				'<div class="listing">-added a way to permanently stop the grandmapocalypse</div>'+
-				'<div class="listing">-Elder Pledge price is now capped</div>'+
-				'<div class="listing">-One Mind and other grandma research upgrades are now a little more powerful, if not 100% accurate</div>'+
-				'<div class="listing">-"golden" cookie now appears again during grandmapocalypse; Elder Pledge-related achievements are now unlockable</div>'+
-				
-				'</div><div class="subsection update">'+
-				'<div class="title">31/08/2013 - too many grandmas</div>'+
-				'<div class="listing">-the grandmapocalypse is back, along with more grandma types</div>'+
-				'<div class="listing">-added some upgrades that boost your clicking power and make it scale with your cps</div>'+
-				'<div class="listing">-clicking achievements made harder; Neverclick is now a shadow achievement; Uncanny clicker should now truly be a world record</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">28/08/2013 - over-achiever</div>'+
-				'<div class="listing">-added a few more achievements</div>'+
-				'<div class="listing">-reworked the "Bake X cookies" achievements so they take longer to achieve</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">27/08/2013 - a bad idea</div>'+
-				'<div class="listing">-due to popular demand, retired 5 achievements (the "reset your game" and "cheat" ones); they can still be unlocked, but do not count toward your total anymore. Don\'t worry, there will be many more achievements soon!</div>'+
-				'<div class="listing">-made some achievements hidden for added mystery</div>'+
-				
-				'</div><div class="subsection update">'+
-				'<div class="title">27/08/2013 - a sense of achievement</div>'+
-				'<div class="listing">-added achievements (and milk)</div>'+
-				'<div class="listing"><i>(this is a big update, please don\'t get too mad if you lose some data!)</i></div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">26/08/2013 - new upgrade tier</div>'+
-				'<div class="listing">-added some more upgrades (including a couple golden cookie-related ones)</div>'+
-				'<div class="listing">-added clicking stats</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">26/08/2013 - more tweaks</div>'+
-				'<div class="listing">-tweaked a couple cursor upgrades</div>'+
-				'<div class="listing">-made time machines less powerful</div>'+
-				'<div class="listing">-added offline mode option</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">25/08/2013 - tweaks</div>'+
-				'<div class="listing">-rebalanced progression curve (mid- and end-game objects cost more and give more)</div>'+
-				'<div class="listing">-added some more cookie upgrades</div>'+
-				'<div class="listing">-added CpS for cursors</div>'+
-				'<div class="listing">-added sell button</div>'+
-				'<div class="listing">-made golden cookie more useful</div>'+
-				
-				'</div><div class="subsection update small">'+
-				'<div class="title">24/08/2013 - hotfixes</div>'+
-				'<div class="listing">-added import/export feature, which also allows you to retrieve a save game from the old version (will be disabled in a week to prevent too much cheating)</div>'+
-				'<div class="listing">-upgrade store now has unlimited slots (just hover over it), due to popular demand</div>'+
-				'<div class="listing">-added update log</div>'+
-				
-				'</div><div class="subsection update">'+
-				'<div class="title">24/08/2013 - big update!</div>'+
-				'<div class="listing">-revamped the whole game (new graphics, new game mechanics)</div>'+
-				'<div class="listing">-added upgrades</div>'+
-				'<div class="listing">-much safer saving</div>'+
-				
-				'</div><div class="subsection update">'+
-				'<div class="title">08/08/2013 - game launch</div>'+
-				'<div class="listing">-made the game in a couple hours, for laughs</div>'+
-				'<div class="listing">-kinda starting to regret it</div>'+
-				'<div class="listing">-ah well</div>'+
+				'<div class="title">01/04/2014</div>'+
+				'<div class="listing">First release!</div>'+
+				'<div class="subsection">'+
+				'<div class="title">30/03/2014</div>'+
+				'<div class="listing">The emergence of the idea and its implementation through.</div>'+
 				'</div>'
 				;
 			}
@@ -1514,13 +1402,13 @@ Game.Launch=function()
 				'<div class="title">Prestige</div>'+
 				'<div class="listing"><small>(Note : each heavenly chip grants you +2% CpS multiplier. You can gain more chips by resetting with a lot of cookies.)</small></div>'+
 				'<div class="listing"><div class="icon" style="background-position:'+(-19*48)+'px '+(-7*48)+'px;"></div> <span style="vertical-align:100%;"><span class="title" style="font-size:22px;">'+Game.prestige['Heavenly chips']+' heavenly chip'+(Game.prestige['Heavenly chips']==1?'':'s')+'</span> (+'+(Game.prestige['Heavenly chips']*2)+'% CpS)</span></div>'):'')+
-				
+				/*TODO UPGRADES
 				'</div><div class="subsection">'+
 				'<div class="title">Upgrades unlocked</div>'+
 				'<div class="listing"><b>Unlocked :</b> '+upgradesOwned+'/'+upgradesTotal+' ('+Math.round((upgradesOwned/upgradesTotal)*100)+'%)</div>'+
 				'<div class="listing" style="overflow-y:hidden;">'+upgrades+'</div>'+
 				(cookieUpgrades!=''?('<div class="listing"><b>Cookies</b></div>'+
-				'<div class="listing" style="overflow-y:hidden;">'+cookieUpgrades+'</div>'):'')+
+				'<div class="listing" style="overflow-y:hidden;">'+cookieUpgrades+'</div>'):'')+*/
 				'</div>'
 				;
 			}
@@ -1598,7 +1486,8 @@ Game.Launch=function()
 		{
 			var list=[];
 			
-			
+			list.push(' ');
+			/*TODO
 			if (list.length==0)
 			{
 				if (Game.cookiesEarned<5) list.push('You feel like making cookies. But nobody wants to eat your cookies.');
@@ -1629,33 +1518,7 @@ Game.Launch=function()
 				else if (Game.cookiesEarned<10000000000) list.push('A local news station runs a 10-minute segment about your cookies. Success!<br><span style="font-size:50%;">(you win a cookie)</span>');
 				else if (Game.cookiesEarned<10100000000) list.push('it\'s time to stop playing');//only show this for 100 millions (it's funny for a moment)
 			}
-			
-			if (Game.elderWrath>0 && (Game.pledges==0 || Math.random()<0.5))
-			{
-				list=[];
-				if (Game.elderWrath==1) list.push(choose([
-					'News : millions of old ladies reported missing!',
-					'News : processions of old ladies sighted around cookie facilities!',
-					'News : families around the continent report agitated, transfixed grandmothers!',
-					'News : doctors swarmed by cases of old women with glassy eyes and a foamy mouth!',
-					'News : nurses report "strange scent of cookie dough" around female elderly patients!'
-				]));
-				if (Game.elderWrath==2) list.push(choose([
-					'News : town in disarray as strange old ladies break into homes to abduct infants and baking utensils!',
-					'News : sightings of old ladies with glowing eyes terrify local population!',
-					'News : retirement homes report "female residents slowly congealing in their seats"!',
-					'News : whole continent undergoing mass exodus of old ladies!',
-					'News : old women freeze in place in streets, ooze warm sugary syrup!'
-				]));
-				if (Game.elderWrath==3) list.push(choose([
-					'News : large "flesh highways" scar continent, stretch between various cookie facilities!',
-					'News : wrinkled "flesh tendrils" visible from space!',
-					'News : remains of "old ladies" found frozen in the middle of growing fleshy structures!', 
-					'News : all hope lost as writhing mass of flesh and dough engulfs whole city!',
-					'News : nightmare continues as wrinkled acres of flesh expand at alarming speeds!'
-				]));
-			}
-			
+			*/
 			Game.TickerAge=Game.fps*10;
 			Game.Ticker=choose(list);
 			Game.TickerN++;
@@ -1867,7 +1730,7 @@ Game.Launch=function()
 			{
 				var me=Game.Objects[i];
 				str+='<div class="product" '+Game.getTooltip(
-				'<div style="min-width:300px;"><div style="float:right;"><span class="price">'+Beautify(Math.round(me.price))+'</span></div><div class="name">'+me.name+'</div>'+'<small>[owned : '+me.amount+'</small>]<div class="description">'+me.desc+'</div></div>'
+				'<div style="min-width:300px;"><div style="float:right;"><span class="price">'+Beautify(Math.round(me.price))+'</span></div><div class="name">'+me.displayName+'</div>'+'<small>[owned : '+me.amount+'</small>]<div class="description">'+me.desc+'</div></div>'
 				,0,0,'left')+' onclick="Game.ObjectsById['+me.id+'].buy();" id="product'+me.id+'"><div class="icon" style="background-image:url(img/'+me.icon+'.png);"></div><div class="content"><div class="title">'+me.displayName+'</div><span class="price">'+Beautify(Math.round(me.price))+'</span>'+(me.amount>0?('<div class="title owned">'+me.amount+'</div>'):'')+'</div></div>';
 			}
 			l('products').innerHTML=str;
@@ -1996,16 +1859,16 @@ Game.Launch=function()
 			return Game.ComputeCps(400,Game.Has('Antimony')*100,Game.Has('Essence of dough')+Game.Has('True chocolate')+Game.Has('Ambrosia'));
 		},Game.NewDrawFunction(0,16,16,64,2,16),function(){ });
 		
-		new Game.Object('Portal','portal|portals|retrieved','Opens a door to the Cookieverse.','portal','portalIcon','portalBackground',1666666,function(){
+		new Game.Object('Portal','portal|portals|retrieved','Opens a door to multidimensional space.','portal','portalIcon','portalBackground',1666666,function(){
 			return Game.ComputeCps(6666,Game.Has('Ancient tablet')*1666,Game.Has('Insane oatling workers')+Game.Has('Soul bond')+Game.Has('Sanity dance'));
 		},Game.NewDrawFunction(0,32,32,64,2),function(){ });
-		new Game.Object('Time machine','time machine|time machines|recovered','Brings cookies from the past, before they were even eaten.','timemachine','timemachineIcon','timemachineBackground',123456789,function(){
+		new Game.Object('Time machine','time machine|time machines|recovered','Brings integrals from the future, after they will be taken.','timemachine','timemachineIcon','timemachineBackground',123456789,function(){
 			return Game.ComputeCps(98765,Game.Has('Flux capacitors')*9876,Game.Has('Time paradox resolver')+Game.Has('Quantum conundrum')+Game.Has('Causality enforcer'));
 		},Game.NewDrawFunction(0,32,32,64,1),function(){ });
-		new Game.Object('Antimatter condenser','antimatter condenser|antimatter condensers|condensed','Condenses the antimatter in the universe into cookies.','antimattercondenser','antimattercondenserIcon','antimattercondenserBackground',3999999999,function(){
+		new Game.Object('Antimatter condenser','Deep Thought|Deep Thought|taked','42.','antimattercondenser','antimattercondenserIcon','antimattercondenserBackground',4200000000,function(){
 			return Game.ComputeCps(999999,Game.Has('Sugar bosons')*99999,Game.Has('String theory')+Game.Has('Large macaron collider')+Game.Has('Big bang bake'));
 		},Game.NewDrawFunction(0,0,64,64,1),function(){ });
-		Game.Objects['Antimatter condenser'].displayName='<span style="font-size:65%;">Antimatter condenser</span>';//shrink the name since it's so large
+		Game.Objects['Antimatter condenser'].displayName='Deep Thought';//shrink the name since it's so large
 		
 		/*=====================================================================================
 		UPGRADES
@@ -2123,6 +1986,7 @@ Game.Launch=function()
 		
 		Game.RebuildUpgrades=function()//recalculate the upgrades you can buy
 		{
+			/*TODO UPGRADES
 			Game.upgradesToRebuild=0;
 			var list=[];
 			for (var i in Game.Upgrades)
@@ -2157,7 +2021,7 @@ Game.Launch=function()
 				'<div style="min-width:200px;"><div style="float:right;"><span class="price">'+Beautify(Math.round(me.basePrice))+'</span></div><small>[Upgrade]</small><div class="name">'+me.name+'</div><div class="description">'+me.desc+'</div></div>'
 				,0,16,'bottom-right')+' onclick="Game.UpgradesById['+me.id+'].buy();" id="upgrade'+i+'" style="background-position:'+(-me.icon[0]*48+6)+'px '+(-me.icon[1]*48+6)+'px;"></div>';
 			}
-			l('upgrades').innerHTML=str;
+			l('upgrades').innerHTML=str;*/
 		}
 		
 		var tier1=10;
